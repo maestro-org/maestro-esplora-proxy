@@ -1,4 +1,4 @@
-# maestro-esplora-proxy
+# Maestro Esplora Proxy
 
 Authenticated Esplora proxy for BDK applications.
 
