@@ -56,7 +56,13 @@ async fn proxy_handler(req: Request<Incoming>) -> Result<Response<Full<bytes::By
         api_key
     )
     .parse()
-    .unwrap();
+    .map_err(|e| {
+        eprintln!("Failed to parse URI: {}", e);
+        Response::builder()
+            .status(400)
+            .body(Full::new(bytes::Bytes::from("Invalid URI")))
+            .unwrap()
+    })?;
 
     // Clone request body
     let whole_body = req.into_body().collect().await.unwrap().to_bytes();
