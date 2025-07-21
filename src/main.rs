@@ -23,7 +23,13 @@ async fn main() {
     let listener = tokio::net::TcpListener::bind(addr).await.unwrap();
     
     loop {
-        let (stream, _) = listener.accept().await.unwrap();
+        let (stream, _) = match listener.accept().await {
+            Ok(conn) => conn,
+            Err(e) => {
+                eprintln!("Failed to accept connection: {:?}", e);
+                continue;
+            }
+        };
         let io = hyper_util::rt::TokioIo::new(stream);
         
         tokio::task::spawn(async move {
