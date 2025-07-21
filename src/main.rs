@@ -6,9 +6,14 @@ use hyper_util::rt::TokioExecutor;
 use http_body_util::{Full, BodyExt};
 use std::convert::Infallible;
 use std::net::SocketAddr;
+use dotenvy::dotenv;
 
-static API_KEY: &str = "MAESTRO_API_KEY"; // Replace with your actual API key
-static ESPLORA_URL: &str = "https://xbt-testnet.gomaestro-api.org/v0/esplora"; // Replace with your Esplora base URL
+// Load .env file
+dotenv().ok();
+
+// Read values from environment
+let api_key = env::var("MAESTRO_API_KEY").expect("MAESTRO_API_KEY not set");
+let esplora_url = env::var("ESPLORA_URL").expect("ESPLORA_URL not set"); 
 
 #[tokio::main]
 async fn main() {
@@ -45,10 +50,10 @@ async fn proxy_handler(req: Request<Incoming>) -> Result<Response<Full<bytes::By
     
     let target_uri: Uri = format!(
         "{}{}{}api-key={}",
-        ESPLORA_URL,
+        esplora_url,
         path_and_query,
         separator,
-        API_KEY
+        api_key
     )
     .parse()
     .unwrap();

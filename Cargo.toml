@@ -11,3 +11,4 @@ http-body-util = "0.1"
 bytes = "1.0"
 tokio = { version = "1", features = ["full"] }
 chrono = { version = "0.4", features = ["serde"] }
+dotenvy = "0.15"

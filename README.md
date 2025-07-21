@@ -12,26 +12,28 @@ BDK Client → Proxy (localhost:8080) → Maestro Esplora API
 
 ### Configuration
 
-Set the appropriate Maestro Esplora API endpoint based on your network.
+Clone Maestro-Esplora-Proxy Repo:
 
-**Mainnet:**
-
-```rust
-static ESPLORA_URL: &str = "https://xbt-mainnet.gomaestro-api.org/v0/esplora";
+```bash
+git clone https://github.com/maestro-org/maestro-esplora-proxy.git && cd maestro-esplora-proxy
 ```
 
-**Testnet (testnet4):**
+Copy `.env.example` template:
 
-```rust
-static ESPLORA_URL: &str = "https://xbt-testnet.gomaestro-api.org/v0/esplora";
+```bash
+cp .env.example .env
 ```
 
-Set your API key
+Edit your `.env` file:
 
-**API Key:**
+```bash
+MAESTRO_API_KEY=your-maestro-api-key-here
 
-```rust
-static API_KEY: &str = "your_actual_api_key_here";
+# mainnet
+ESPLORA_URL=https://xbt-mainnet.gomaestro-api.org/v0/esplora
+
+# testnet4
+# ESPLORA_URL=https://xbt-testnet.gomaestro-api.org/v0/esplora
 ```
 
 ### Usage
