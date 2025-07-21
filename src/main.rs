@@ -20,7 +20,13 @@ async fn main() {
     let addr: SocketAddr = ([0, 0, 0, 0], 8080).into();
     println!("Proxy listening on http://{}", addr);
 
-    let listener = tokio::net::TcpListener::bind(addr).await.unwrap();
+    let listener = match tokio::net::TcpListener::bind(addr).await {
+        Ok(listener) => listener,
+        Err(e) => {
+            eprintln!("Failed to bind to address {}: {}", addr, e);
+            std::process::exit(1);
+        }
+    };
     
     loop {
         let (stream, _) = match listener.accept().await {
