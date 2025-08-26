@@ -52,6 +52,8 @@ _Example_
 let blockchain = EsploraBlockchain::new("http://localhost:8080", 20);
 ```
 
+See the [Mempool.space Migration Guide](https://docs.gomaestro.org/bitcoin/tutorials-and-guides/mempool-space-migration-guide#using-the-esplora-bdk-proxy-for-maestro-api-key-authorization) for a comprehensive walkthrough on replacing your existing Esplora provider with Maestro.
+
 ### Support
 
 -   [Open an issue](https://github.com/maestro-org/maestro-esplora-proxy/issues/new)
